@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  postgres:
+    container_name: "confab.postgres.docker-compose.debug"
+
+  confab.bootstrapper:
+    container_name: "confab.service.docker-compose.debug"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - DEVELOPMENT_RUNTIME=Docker-Compose
+    ports:
+      - "5000:80"
+      - "5443:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro

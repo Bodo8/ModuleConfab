@@ -1,0 +1,71 @@
+@host = http://localhost:5000
+@api = {{host}}/conferences-module
+@url = {{api}}/conferences
+
+@email = teo@vincent.com
+@password = sicret
+@accessToken = {{access_token.response.body.accessToken}}
+
+### Get access token for the user
+# @name access_token
+POST {{host}}/users-module/account/sign-in
+Content-Type: application/json
+
+{
+    "email": "{{email}}",
+    "password": "{{password}}"
+}
+
+### Get hello Conferences Module API message
+GET {{api}}
+
+### Get
+GET {{url}}
+
+### Add new
+# @name new_created_location
+POST {{url}}
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "HostId": "d7cdf424-7cd7-4c7c-80ab-ef7181bb6923",
+    "Name": "Conf 1",
+    "Description": "Description of Conf 1",
+    "From": "2021-05-01",
+    "To": "2021-05-03",
+    "Localization": "Melbourne",
+    "ParticipantsLimit": 100,
+    "LogoUrl": "http://logo.com/conf1.jpg"
+}
+
+### ID variable
+@conferenceId = 5ec95eb9-e9c4-4447-977b-ab9b4285b6bf
+
+### Get
+GET {{url}}/{{conferenceId}}
+
+### Update
+PUT {{url}}/{{conferenceId}}
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "Name": "Edited Conf 1",
+    "Description": "Edited description of Conf 1",
+    "From": "2021-05-01",
+    "To": "2021-05-03",
+    "Localization": "Melbourne",
+    "ParticipantsLimit": 100,
+    "LogoUrl": "http://logo.com/conf1.jpg"
+}
+
+### Delete
+DELETE {{url}}/{{conferenceId}}
+Authorization: Bearer {{accessToken}}
+
+### Arleady created location variable
+@hostLocation = {{new_created_location.response.headers.Location}}
+
+### Get arleady created
+GET {{hostLocation}}

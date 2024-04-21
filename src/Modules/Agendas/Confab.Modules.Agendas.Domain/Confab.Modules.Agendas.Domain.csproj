@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Agendas\Events\Handlers\" />
+    <Folder Include="Agendas\Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\Confab.Shared.Kernel\Confab.Shared.Kernel.csproj" />
+  </ItemGroup>
+
+</Project>

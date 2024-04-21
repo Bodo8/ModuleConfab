@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\Confab.Shared.Abstractions\Confab.Shared.Abstractions.csproj" />
+    <ProjectReference Include="..\Confab.Modules.Agendas.Domain\Confab.Modules.Agendas.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Agendas\Events\" />
+    <Folder Include="Agendas\Exceptions\" />
+    <Folder Include="Agendas\Types\" />
+    <Folder Include="Agendas\Queries\" />
+  </ItemGroup>
+
+</Project>

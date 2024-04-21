@@ -1,0 +1,30 @@
+@host = http://localhost:5000
+@api = {{host}}/attendances-module
+@url = {{api}}/attendances
+
+@email = teo@vincent.com
+@password = sicret
+@accessToken = {{access_token.response.body.accessToken}}
+
+### Get access token for the user
+# @name access_token
+POST {{host}}/users-module/account/sign-in
+Content-Type: application/json
+
+{
+    "email": "{{email}}",
+    "password": "{{password}}"
+}
+
+###
+GET {{api}}
+
+@eventId = d6009ebc-6b0a-48da-8215-c55636433afe
+
+### Attend an event
+POST {{url}}/events/{{eventId}}/attend
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+}

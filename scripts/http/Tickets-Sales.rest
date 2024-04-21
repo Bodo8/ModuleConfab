@@ -1,0 +1,44 @@
+@host = http://localhost:5000
+@api = {{host}}/tickets-module
+@url = {{api}}/sales/conferences
+
+@email = teo@vincent.com
+@password = sicret
+@accessToken = {{access_token.response.body.accessToken}}
+
+### Get access token for the user
+# @name access_token
+POST {{host}}/users-module/account/sign-in
+Content-Type: application/json
+
+{
+    "email": "{{email}}",
+    "password": "{{password}}"
+}
+
+###
+
+@conferenceId = 5ec95eb9-e9c4-4447-977b-ab9b4285b6bf
+
+###
+GET {{api}}
+
+###
+GET {{url}}/{{conferenceId}}
+
+###
+GET {{url}}/{{conferenceId}}/current
+
+###
+POST {{url}}/{{conferenceId}}
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+  "conferenceId": "{{conferenceId}}",
+  "name": "Last minutes",
+  "price": 1000,
+  "amount": 100,
+  "from": "2022-01-01",
+  "to": "2022-04-05"
+}

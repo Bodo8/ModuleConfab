@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <UserSecretsId>afe926c9-fdbf-4363-b781-cc1b6aec3bed</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..\..</DockerfileContext>
+    <DockerComposeProjectPath>..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Modules\Agendas\Confab.Modules.Agendas.Api\Confab.Modules.Agendas.Api.csproj" />
+    <ProjectReference Include="..\..\Modules\Attendances\Confab.Modules.Attendances.Api\Confab.Modules.Attendances.Api.csproj" />
+    <ProjectReference Include="..\..\Modules\Conferences\Confab.Modules.Conferences.Api\Confab.Modules.Conferences.Api.csproj" />
+    <ProjectReference Include="..\..\Modules\Saga\Confab.Modules.Saga\Confab.Modules.Saga.csproj" />
+    <ProjectReference Include="..\..\Modules\Speakers\Confab.Modules.Speakers.Api\Confab.Modules.Speakers.Api.csproj" />
+    <ProjectReference Include="..\..\Modules\Tickets\Confab.Modules.Tickets.Api\Confab.Modules.Tickets.Api.csproj" />
+    <ProjectReference Include="..\..\Modules\Users\Confab.Modules.Users.Api\Confab.Modules.Users.Api.csproj" />
+    <ProjectReference Include="..\..\Shared\Confab.Shared.Infrastructure\Confab.Shared.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

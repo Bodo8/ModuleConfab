@@ -1,0 +1,32 @@
+@host = http://localhost:5000
+@api = {{host}}/tickets-module
+@url = {{api}}/tickets
+
+@email = teo@vincent.com
+@password = sicret
+@accessToken = {{access_token.response.body.accessToken}}
+
+### Get access token for the user
+# @name access_token
+POST {{host}}/users-module/account/sign-in
+Content-Type: application/json
+
+{
+    "email": "{{email}}",
+    "password": "{{password}}"
+}
+
+###
+
+@conferenceId = 5ec95eb9-e9c4-4447-977b-ab9b4285b6bf
+
+###
+GET {{api}}
+
+###
+POST {{url}}/conferences/{{conferenceId}}/purchases
+Authorization: Bearer {{accessToken}}
+
+###
+GET {{url}}
+Authorization: Bearer {{accessToken}}

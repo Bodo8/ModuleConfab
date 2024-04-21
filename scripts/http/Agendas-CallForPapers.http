@@ -1,0 +1,42 @@
+@host = http://localhost:5000
+@api = {{host}}/agendas-module
+@conferenceId = 26914b94-ce02-474d-bb8c-24d5b0470fca
+@url = {{api}}/conferences/{{conferenceId}}/cfps
+
+@email = teo@vincent.com
+@password = sicret
+@accessToken = {{access_token.response.body.accessToken}}
+
+### Get access token for the user
+# @name access_token
+POST {{host}}/users-module/account/sign-in
+Content-Type: application/json
+
+{
+    "email": "{{email}}",
+    "password": "{{password}}"
+}
+
+### Get CFP
+GET {{url}}
+Content-Type: application/json
+
+### Create CFP
+POST {{url}}
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "From": "2021-03-01",
+    "To": "2021-04-01"
+}
+
+### Open CFP
+PUT {{url}}/openings
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+### Close CFP
+PUT {{url}}/closings
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}

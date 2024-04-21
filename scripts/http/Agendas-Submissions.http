@@ -1,0 +1,60 @@
+@host = http://localhost:5000
+@api = {{host}}/agendas-module
+@url = {{api}}/submissions
+
+@email = teo@vincent.com
+@password = sicret
+@accessToken = {{access_token.response.body.accessToken}}
+
+### Get access token for the user
+# @name access_token
+POST {{host}}/users-module/account/sign-in
+Content-Type: application/json
+
+{
+    "email": "{{email}}",
+    "password": "{{password}}"
+}
+
+### Add new
+# @name new_created
+POST {{url}}
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "ConferenceId": "5627af4c-08da-4c8c-a170-36285a49b10a",
+    "Title": "Submission 1 of Conf 1 with Speaker 1",
+    "Description": "Desc of Submission 1 of Conf 1 with Speaker 1",
+    "Level": "1",
+    "Tags": [ "tag_one", "tag_two", "tag_three"],
+    "SpeakerIds": [ 
+        "112441a6-b16a-46cc-95f8-0070f80166a0"
+        ]
+}
+
+### ID variable
+@id = {{new_created.response.body.id}}
+
+### Get
+GET {{url}}/{{id}}
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+### Arleady created location variable
+@hostLocation = {{new_created.response.headers.Location}}
+
+### Get arleady created
+GET {{hostLocation}}
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+### Approve submission
+PUT {{url}}/{{id}}/approvals
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+### Reject submission
+PUT {{url}}/{{id}}/rejections
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}

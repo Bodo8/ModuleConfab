@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\Confab.Shared.Infrastructure\Confab.Shared.Infrastructure.csproj" />
+    <ProjectReference Include="..\Confab.Modules.Attendances.Application\Confab.Modules.Attendances.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="EF\Migrations\" />
+  </ItemGroup>
+
+</Project>

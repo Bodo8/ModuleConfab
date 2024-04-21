@@ -1,0 +1,62 @@
+@host = http://localhost:5000
+@api = {{host}}/conferences-module
+@url = {{api}}/hosts
+
+@email = teo@vincent.com
+@password = sicret
+@accessToken = {{access_token.response.body.accessToken}}
+
+### Get access token for the user
+# @name access_token
+POST {{host}}/users-module/account/sign-in
+Content-Type: application/json
+
+{
+    "email": "{{email}}",
+    "password": "{{password}}"
+}
+
+
+### Get hello Conferences Module API message
+GET {{api}}
+
+### Get
+GET {{url}}
+
+### Add new
+# @name new_created_location
+POST {{url}}
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "Name": "Host 1",
+    "Description": "Description of Host 1"
+}
+
+### ID variable
+@hostId = 142f3425-76ab-44fe-b55e-c74e133cc312
+
+### Get
+GET {{url}}/{{hostId}}
+
+### Update
+PUT {{url}}/{{hostId}}
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "Name": "Edited Host 1",
+    "Description": "Edited description of Host 1.",
+    "Conferences": [ ]
+}
+
+### Delete
+DELETE {{url}}/{{hostId}}
+Authorization: Bearer {{accessToken}}
+
+### Arleady created location variable
+@hostLocation = {{new_created_location.response.headers.Location}}
+
+### Get arleady created
+GET {{hostLocation}}
